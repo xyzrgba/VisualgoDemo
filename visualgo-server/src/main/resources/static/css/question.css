@@ -1,0 +1,61 @@
+.detail-container {
+    display: flex;
+    flex-direction: row;
+    min-height: 768px;
+    margin-top: 30px;
+}
+
+.detail-container .left, .detail-container .right {
+    flex: 1;
+    height: 100%;
+}
+
+.question-description {
+    font-size: 15px;
+    line-height: 2rem;
+    margin-top: 10px;
+}
+
+.detail-container .right textarea {
+    width: 100%;
+}
+
+.detail-title {
+    text-align: left;
+    font-size: 11pt;
+}
+
+.detail-body {
+    /*margin-top: 20px;*/
+    font-size: 15px;
+}
+
+hr {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.form-title {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 5%;
+    /*margin-right: 5%;*/
+    margin-bottom: 10px;
+}
+
+.form-title p {
+    font-size: 16px;
+}
+
+.form-title button {
+    width: 150px;
+}
+.detail-container .left{
+    margin-right: 7px;
+}
+.detail-container .right{
+    margin-left: 7px;
+}
+textarea{
+    resize: none;
+}

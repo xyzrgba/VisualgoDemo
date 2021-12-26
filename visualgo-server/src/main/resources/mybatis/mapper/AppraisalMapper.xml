@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="tech.airacoon.visualgo.dao.AppraisalDao">
+    <resultMap id="appraisal" type="tech.airacoon.visualgo.pojo.Appraisal">
+        <id property="id" column="id"/>
+        <result property="date" column="date"/>
+        <result property="content" column="content"/>
+        <result property="accountId" column="account_id"/>
+        <result property="answerId" column="answer_id"/>
+    </resultMap>
+    <resultMap id="appraisalForView" type="tech.airacoon.visualgo.pojo.Appraisal">
+        <id property="id" column="id"/>
+        <result property="date" column="appraisal_date"/>
+        <result property="content" column="appraisal_content"/>
+        <result property="accountId" column="teacher_id"/>
+        <result property="answerId" column="appraisal_answer_id"/>
+    </resultMap>
+    <resultMap id="simpleAppraisalForView" type="tech.airacoon.visualgo.pojo.SimpleAppraisal"
+               extends="appraisalForView">
+        <result property="detailAnswer.accountId" column="student_id"/>
+        <result property="detailAnswer.account.name" column="student_name"/>
+        <result property="detailAnswer.account.email" column="student_email"/>
+        <result property="detailAnswer.answerState.name" column="answer_state_name"/>
+        <result property="detailAnswer.content" column="answer_content"/>
+        <result property="detailAnswer.questionWithDiff.content" column="question_content"/>
+        <result property="detailAnswer.questionWithDiff.questionDifficulty.name" column="question_level"/>
+        <result property="detailAnswer.questionWithDiff.title" column="question_title"/>
+        <result property="detailAnswer.questionId" column="question_id"/>
+    </resultMap>
+    <parameterMap id="addFullAppraisalProc" type="tech.airacoon.visualgo.pojo.Appraisal">
+        <parameter property="answerId" mode="IN" jdbcType="INTEGER"/>
+        <parameter property="accountId" mode="IN" jdbcType="INTEGER"/>
+        <parameter property="content" mode="IN" jdbcType="VARCHAR"/>
+    </parameterMap>
+    <insert id="addFullAppraisaByTeacher" parameterMap="addFullAppraisalProc"
+            statementType="CALLABLE">
+        <if test="appraisal!=null">
+            {
+            call addFullAppraisal(#{appraisal.answerId}, #{appraisal.content}, #{appraisal.accountId})
+            }
+        </if>
+    </insert>
+    <select id="getAllAppraisalByTeacherId" resultType="tech.airacoon.visualgo.pojo.SimpleAppraisal"
+            resultMap="simpleAppraisalForView">
+        <if test="teacherId!=null">
+            select * from simple_appraisal
+            where teacher_id = #{teacherId}
+        </if>
+    </select>
+    <select id="getAllAppraisalByStudentId" resultType="tech.airacoon.visualgo.pojo.SimpleAppraisal"
+            resultMap="simpleAppraisalForView">
+        <if test="studentId!=null">
+            select * from simple_appraisal
+            where student_id = #{studentId}
+        </if>
+    </select>
+    <select id="getAppraisalById" resultType="tech.airacoon.visualgo.pojo.SimpleAppraisal"
+            resultMap="simpleAppraisalForView">
+        <if test="appraisalId!=null">
+            select * from simple_appraisal
+            where id = #{appraisalId}
+        </if>
+    </select>
+</mapper>

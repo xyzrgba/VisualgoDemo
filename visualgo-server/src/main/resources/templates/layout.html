@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+    <title></title>
+    <base th:href="@{/}">
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon"/>
+    <script src="lib/jquery-3.4.1.min.js"></script>
+    <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css"/>
+    <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/layout.css"/>
+</head>
+<body id="layout-body">
+<header class="header" layout:fragment="header" id="header">
+    <nav class="navbar navbar-static-top layout-nav" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand logo" th:href="@{/}">
+                    <img src="img/logo.png"/>
+                </a>
+            </div>
+            <ul class="nav navbar-nav navbar-right nav-self">
+                <li><a th:href="@{/}">首页</a></li>
+                <li><a th:href="@{/animation}">动画演示</a></li>
+                <li><a th:href="@{/file/index}">参考资料</a></li>
+                <li><a th:href="@{/question/index}">在线测试</a></li>
+                <li><a th:href="@{/center/index}">个人中心</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<div layout:fragment="content">container</div>
+<footer class="footer" layout:fragment="footer">
+    <div class="container">
+        <ul>
+            <li><a href="https://gitee.com/airacoon/visualgo-server" target="_blank">Gitee仓库</a></li>
+            <li><a href="https://github.com/airacoon/visualgo-server" target="_blank">GitHub仓库</a></li>
+            <li><a href="https://leetcode-cn.com/" target="_blank">LeetCode</a></li>
+        </ul>
+        <p>
+            The source code is only for personal learning. If you have any questions, please send an email to <a
+                href="mailto:airacoon@qq.com">the author.</a>
+        </p>
+        <p>
+            本站的所有资源仅用于学习!
+        </p>
+    </div>
+</footer>
+</body>
+<script src="js/layout.js"></script>
+</html>

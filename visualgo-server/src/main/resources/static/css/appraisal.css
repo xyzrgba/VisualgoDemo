@@ -1,0 +1,10 @@
+.apprasal-container {
+    display: flex;
+    flex-direction: column;
+}
+.apprasal-container .top,.apprasal-container .bottom{
+    flex: 1;
+}
+.detail-container {
+    min-height: 300px;
+}

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorate="layout" layout:fragment="content">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <title>注册登录</title>
+    <!--<link rel="stylesheet" href="../../static/css/authorization.css">-->
+    <link rel="stylesheet" href="css/authorization.css"/>
+</head>
+<body>
+<div class="lowin" id="lowin">
+    <div class="lowin-brand">
+        <!--<img src="../../static/img/logo.png" alt="logo">-->
+        <img src="img/logo.png" alt="logo">
+    </div>
+    <div class="lowin-wrapper">
+        <div class="lowin-box lowin-login">
+            <div class="lowin-box-inner">
+                <form method="post">
+                    <p>登录</p>
+                    <div class="lowin-group">
+                        <label>邮箱 <a href="#" class="login-back-link">登录</a></label>
+                        <input type="email" autocomplete="email" name="email" placeholder="请输入邮箱" class="lowin-input">
+                    </div>
+                    <div class="lowin-group password-group">
+                        <label>密码 <a href="#" class="forgot-link">忘记密码?</a></label>
+                        <input type="password" name="password" autocomplete="current-password" placeholder="请输入登录密码"
+                               class="lowin-input">
+                    </div>
+                    <button class="lowin-btn login-btn " type="submit">
+                        登录
+                    </button>
+
+                    <div class="text-foot">
+                        还没有账户吗? <a href="" class="register-link">注册一个</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="lowin-box lowin-register">
+            <div class="lowin-box-inner">
+                <form method="post">
+                    <p>让我们先创建一个账户吧</p>
+                    <div class="lowin-group">
+                        <label>名称</label>
+                        <input type="text" name="name" autocomplete="name" class="lowin-input" placeholder="请输入账号名称">
+                    </div>
+                    <div class="lowin-group">
+                        <label>邮箱</label>
+                        <input type="email" autocomplete="email" name="email" class="lowin-input" placeholder="请输入邮箱地址">
+                    </div>
+                    <div class="lowin-group">
+                        <label>密码</label>
+                        <input type="password" name="password" autocomplete="current-password" class="lowin-input"
+                               placeholder="请输入密码">
+                    </div>
+                    <button class="lowin-btn reg-btn" type="submit">
+                        注 册
+                    </button>
+
+                    <div class="text-foot">
+                        已经有一个账户? <a href="" class="login-link">登录</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <footer class="lowin-footer">
+
+    </footer>
+</div>
+<!--<script src="../../static/js/authorization.js"></script>-->
+<script src="js/authorization.js"></script>
+<script th:inline="javascript">
+    Authorization.init({
+        login_url: '/auth/login',
+        forgot_url: '#forgot',
+        reg_url: '/auth/reg'
+    });
+    (function () {
+        let hint = [[${msg}]];
+        if(hint!=null){
+            alert(hint);
+        }
+    })();
+</script>
+</body>
+</html>

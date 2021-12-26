@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <base th:href="@{/}">
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="renderer" content="webkit">
+    <link rel="stylesheet" href="css/pintuer.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <script src="js/jquery.js"></script>
+    <script src="js/pintuer.js"></script>
+</head>
+<body>
+<form method="post" action="" id="listform">
+    <div class="panel admin-panel">
+        <div class="panel-head"><strong class="icon-reorder">全部用户情况</strong>
+        </div>
+        <table class="table table-hover text-center">
+            <tr>
+                <th>用户角色</th>
+                <th>学生邮箱</th>
+                <th>用户姓名</th>
+                <th>地址</th>
+                <th>操作</th>
+            </tr>
+            <volist name="list" id="vo">
+                <tr th:each="account:${accountList}">
+                    <td style="text-align:center; padding-left:20px;">
+                        <!--<input type="checkbox" name="id[]" value=""/>-->
+                        <label th:utext="${account.role.name}"></label>
+                    </td>
+                    <td><a href="#"><p color="#00CC99" style="margin-bottom:0px;"
+                                       th:utext="${account.email}"></p></a>
+                    </td>
+                    <td th:utext="${account.name}"></td>
+                    <td th:utext="${account.location}"></td>
+                    <td colspan="7" style="text-align:center;">
+                        <div class="button-group">
+                            <a class="button border-main" style="padding:2px 8px;" target="right"
+                               th:href="'/admin/gotoChangeUserInfo/'+${account.id}">
+                                <span class="icon-edit"></span> 修改信息
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            </volist>
+        </table>
+    </div>
+</form>
+<script type="text/javascript" th:inline="javascript">
+
+    //搜索
+    function changesearch() {
+
+    }
+
+    //单个删除
+    function del(id, mid, iscid) {
+        if (confirm("您确定要删除吗?")) {
+
+        }
+    }
+
+    //全选
+    $("#checkall").click(function () {
+        $("input[name='id[]']").each(function () {
+            if (this.checked) {
+                this.checked = false;
+            }
+            else {
+                this.checked = true;
+            }
+        });
+    })
+
+    //批量删除
+    function DelSelect() {
+        var Checkbox = false;
+        $("input[name='id[]']").each(function () {
+            if (this.checked == true) {
+                Checkbox = true;
+            }
+        });
+        if (Checkbox) {
+            var t = confirm("您确认要删除选中的内容吗？");
+            if (t == false) return false;
+            $("#listform").submit();
+        }
+        else {
+            alert("请选择您要删除的内容!");
+            return false;
+        }
+    }
+
+    (function () {
+        let hint = [[${okHint}]];
+        if (hint != null) {
+            alert(hint);
+        }
+    })();
+</script>
+</body>
+</html>

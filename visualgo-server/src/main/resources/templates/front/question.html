@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorate="layout"
+      layout:fragment="content">
+<head>
+    <meta charset="UTF-8">
+    <title> ADT - 数据结构教辅系统</title>
+</head>
+<body>
+<div class="container">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <!--做题情况-->
+            <th role="button">
+                <strong></strong>
+            </th>
+            <!--题目序号-->
+            <th role="button">
+                <strong>#</strong>
+            </th>
+            <!--题目名称-->
+            <th role="button">
+                <strong>题名</strong>
+            </th>
+            <!--题目难度-->
+            <th role="button">
+                <strong>难度</strong>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="simpleQuestion:${simpleQuestionList}">
+            <!--情况-->
+            <td>
+
+            </td>
+            <!--序号-->
+            <td th:text="${simpleQuestion.id}">
+
+            </td>
+            <!--题名-->
+            <td>
+                <a th:attr="href='/question/detail/'+${simpleQuestion.enName}" th:text="${simpleQuestion.title}"></a>
+            </td>
+            <!--难度-->
+            <td th:text="${simpleQuestion.questionDifficulty.name}">
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+<link rel="stylesheet" href="css/question.css"/>
+<script th:inline="javascript">
+    (function () {
+        let hint = [[${commitAnswerHint}]];
+        if(hint!=null&&hint!=""){
+            alert(hint);
+        }
+    })();
+</script>
+</html>

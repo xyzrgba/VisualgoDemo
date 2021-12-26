@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <base th:href="@{/}">
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="renderer" content="webkit">
+    <title></title>
+    <link rel="stylesheet" href="css/pintuer.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <script src="js/jquery.js"></script>
+    <script src="js/pintuer.js"></script>
+</head>
+<body>
+<div class="panel admin-panel">
+    <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span>修改用户基本信息</strong></div>
+    <div class="body-content">
+        <form method="post" class="form-x" action="/admin/updateNormalInfo">
+            <div style="padding-left:20px ;padding-bottom: 20px;">
+                <label>【基本信息】</label>
+            </div>
+            <div class="form-group">
+                <div class="label">
+                    <label>用户账号：</label>
+                </div>
+                <div class="field">
+                    <label style="line-height:33px;" th:utext="${account.email}">
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="label">
+                    <label>用户邮箱：</label>
+                </div>
+                <div class="field l10">
+                    <input type="email" class="input w100" th:value="${account.email}" name="email"
+                           data-validate="required:请输入内容"/>
+                    <div class="tips"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="label">
+                    <label>密码：</label>
+                </div>
+                <div class="field l10">
+                    <input type="password" class="input w50" th:value="${account.password}" name="password"
+                           data-validate="required:请输入内容"/>
+                    <div class="tips"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="label">
+                    <label>用户名：</label>
+                </div>
+                <div class="field l10">
+                    <input type="text" class="input w100" th:value="${account.name}" name="name"
+                           data-validate="required:请输入内容"/>
+                    <div class="tips"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="label">
+                    <label>地址：</label>
+                </div>
+                <div class="field l10">
+                    <input type="text" class="input w50" th:value="${account.location}" name="location"
+                           data-validate="required:请输入内容"/>
+                    <div class="tips"></div>
+                </div>
+            </div>
+            <ul class="list-inline" style="padding-left: 40px;  padding-bottom: 25px;">
+                <li>用户角色:</li>
+                <li style="padding-right: 150px;">
+                    <div class="field">
+                        <label style="line-height:33px;" th:utext="${account.role.name}">
+                        </label>
+                    </div>
+                </li>
+                <li>角色类型：</li>
+                <li style="padding-left:15px;">
+                    <div class="field">
+                        <input name="roleId" id="student" type="radio" value="3"/>学生
+                        <input name="roleId" id="teacher" type="radio" value="2"/>老师
+                        <input name="roleId" id="admin" type="radio" value="1"/>管理员
+                    </div>
+                </li>
+            </ul>
+            <div class="form-group" style="padding: 30px 300px;">
+                <div class="label">
+                    <label></label>
+                </div>
+                <div class="field">
+                    <button class="button bg-main icon-check-square-o" type="submit">提交</button>
+                    <button class="button bg-main icon-check-square-o" type="button" onclick="window.history.back()">
+                        返回
+                    </button>
+                </div>
+            </div>
+            <input type="hidden" th:value="${account.id}" name="id"/>
+        </form>
+    </div>
+</div>
+<script th:inline="javascript">
+    $(document).ready(function () {
+        let roleId = [[${account.roleId}]]
+        let inputType = "input[name='roleId'][value='" + roleId + "']";
+        $(inputType).attr("checked", true);
+    });
+    (function () {
+        let hint = [[${okHint}]];
+        if (hint != null) {
+            alert(hint);
+        }
+    })();
+</script>
+</body>
+</html>

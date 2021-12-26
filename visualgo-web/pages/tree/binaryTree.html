@@ -1,0 +1,69 @@
+<html>
+
+<head>
+    <meta charset="utf-8"/>
+</head>
+
+<body>
+<div class="stageDiv">
+    <!-- 创建链表头指针 -->
+    <canvas id="canvas"></canvas>
+    <div class="algoBar" id="algoBar">
+        <div class="cellDiv">
+            <div class="left" id="initDiv">
+                <label>表达式</label><input type="text" id="expression" min="0" placeholder="请输入字符串" name="expression"/>
+                <button id="confirmInit" class="confirmBtn htmlBtn">创建</button>
+                <button id="confirmAppend" class="confirmBtn htmlBtn">添加</button>
+            </div>
+            <button type="button" class="preBtn right htmlBtn">创建树</button>
+        </div>
+        <div class="cellDiv">
+            <div class="left" id="preorderDiv">
+                <button id="confirmPreorder" class="confirmBtn htmlBtn">运行</button>
+            </div>
+            <button type="button" class="preBtn right htmlBtn">前序遍历</button>
+        </div>
+        <div class="cellDiv">
+            <div class="left" id="inorderDiv">
+                <button id="confirmInorder" class="confirmBtn htmlBtn">运行</button>
+            </div>
+            <button type="button" class="preBtn right htmlBtn">中序遍历</button>
+        </div>
+        <div class="cellDiv">
+            <div class="left" id="postorderDiv">
+                <button id="confirmPostorder" class="confirmBtn htmlBtn">运行</button>
+            </div>
+            <button type="button" class="preBtn right htmlBtn">后序遍历</button>
+        </div>
+        <div class="cellDiv">
+            <div class="left" id="destroyDiv">
+                <button id="confirmLevel" class="confirmBtn htmlBtn">运行</button>
+            </div>
+            <button type="button" class="preBtn right htmlBtn">层次遍历</button>
+        </div>
+    </div>
+</div>
+</body>
+<link rel="stylesheet" href="../../css/layout.css">
+<script src="../../lib/layui/layui.js" charset="utf-8"></script>
+<script src="../../lib/jquery/jquery-3.4.1.min.js"></script>
+<script src="../../js/AlgorithmElements.js"></script>
+<script src="../../js/AnimatedObject.js"></script>
+<script src="../../js/NodeObject.js"></script>
+<script src="../../js/SingleAnimation.js"></script>
+<script src="../../js/AlgorithmObject.js"></script>
+<script src="../../js/AnimatedCircle.js"></script>
+<script src="../../js/AnimatedLabel.js"></script>
+<script src="../../js/AnimatedEdge.js"></script>
+<script src="../../js/ObjectManager.js"></script>
+<script src="../../js/AnimatedManager.js"></script>
+<script src="../../js/PublicHelper.js"></script>
+<script src="../../js/ArrayPlus.js"></script>
+<!--<script src="../../js/BinaryTreeDemo.js"></script>-->
+<!--<script src="./binaryTreeHelper.js"></script>-->
+<script src="../../js/TreeDemo.js"></script>
+<script src="treeHelper.js"></script>
+<script>
+    initHtml();
+</script>
+</html>

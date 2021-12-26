@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorate="layout" layout:fragment="content">
+<head>
+    <meta charset="UTF-8">
+    <title>课程资料</title>
+</head>
+<body>
+<div class="animated-stage">
+    <hr class="animated-hr"/>
+    <div class="col-md-2">
+        <div id="firstpane" class="menu_list">
+            <h3 class="menu_head current">学习指导</h3>
+            <div style="display:block" class="menu_body">
+                <!--/*@thymesVar id="fileList" type="java.util.List"*/-->
+                <a th:each="file:${fileList}" th:attr="data-file-index=${file.id}, data-file-type=${file.type}"
+                   th:text="${file.name}"></a>
+            </div>
+            <h3 class="menu_head">参考书</h3>
+            <div style="display:none" class="menu_body">
+                <!--/*@thymesVar id="cfileList" type="java.util.List"*/-->
+                <!--/*@thymesVar id="literature" type="tech.airacoon.visualgo.pojo.Literature"*/-->
+                <a th:each="cfile:${cfileList}" th:attr="data-file-index=${cfile.id}, data-file-type=${cfile.type}"
+                   th:text="${cfile.name}"></a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-10 col-md-self" id="reader-stage">
+        <!--/*@thymesVar id="defaultFile" type="java.lang.String"*/-->
+        <embed id="main-stage" th:attr="src=${defaultFile}"/>
+    </div>
+</div>
+</body>
+<link rel="stylesheet" href="css/animations.css"/>
+<script>
+    $(document).ready(function () {
+        $("#firstpane .menu_body:eq(0)").show();
+        $("#firstpane h3.menu_head").click(function () {
+            $(this).addClass("current").next("div.menu_body").slideToggle(300).siblings("div.menu_body").slideUp("slow");
+            $(this).siblings().removeClass("current");
+        });
+        $("#secondpane .menu_body:eq(0)").show();
+        $("#secondpane h3.menu_head").mouseover(function () {
+            $(this).addClass("current").next("div.menu_body").slideDown(500).siblings("div.menu_body").slideUp("slow");
+            $(this).siblings().removeClass("current");
+        });
+    });
+    $("a").each(function () {
+        let fileIndex = $(this).attr("data-file-index");
+        if (null != fileIndex) {
+            $(this).bind("click", function () {
+                $.ajax({
+                    url: "/file/getFileInfo",
+                    data: {index: fileIndex},
+                    dataType: "json",
+                    type: "post",
+                    success: function (result) {
+                        let path = "/sources/" + result.fileType.basePath + result.path;
+                        // let divValue = "<embed id='main-stage' src="+ path+"/>";
+
+                        let divValue = "<embed id='main-stage' type='application/pdf' " + "src=" + path + " />";
+                        //思路：清空再添加
+                        $("#reader-stage").empty();
+                        $("#reader-stage").append(divValue);
+                        // $("#main-stage").attr("src", "/sources/" + result.fileType.basePath + result.path);
+                    }
+                });
+            })
+        }
+    });
+</script>
+</html>

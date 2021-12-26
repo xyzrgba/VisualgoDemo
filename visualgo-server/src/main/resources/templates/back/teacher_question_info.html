@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <base th:href="@{/}">
+    <!DOCTYPE html>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="renderer" content="webkit">
+    <link rel="stylesheet" href="css/pintuer.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <script src="js/jquery.js"></script>
+    <script src="js/pintuer.js"></script>
+    <link rel="stylesheet" href="css/teacher.css"/>
+</head>
+<body>
+<form method="post" action="" id="listform">
+    <div class="panel admin-panel">
+        <div class="panel-head"><strong class="icon-reorder">全部上传试题列表</strong>
+        </div>
+        <table class="table table-hover text-center">
+            <tr>
+                <th style="text-align:left; padding-left:20px;" width="90">选中</th>
+                <th>题目标题</th>
+                <th>发布时间</th>
+                <th>操作</th>
+            </tr>
+            <volist name="list" id="vo">
+                <tr th:each="question:${questionList}">
+                    <td style="text-align:left; padding-left:20px;">
+                        <input type="checkbox" name="id[]" value=""/><label th:utext="${question.id}"></label>
+                    </td>
+                    <td><a href="#"><p color="#00CC99" style="margin-bottom:0px;" th:utext="${question.title}"></p></a>
+                    </td>
+                    <td th:utext="${question.date}"></td>
+                    <td colspan="7" style="text-align:center;">
+                        <div class="button-group">
+                            <a class="button border-main" style="padding:2px 8px;" target="right"
+                               th:href="'/teacher/questionDetail/'+${question.id}">
+                                <span class="icon-edit"></span> 修改
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+                <td style="text-align:left; padding:19px 20px;"><input type="checkbox" id="checkall"/>
+                    全选
+                </td>
+                <td style="text-align:left;">
+                    <a class="button border-main" th:href="@{teacher/newquestion}" style="padding:5px 8px;">
+                        +&nbsp;新增
+                    </a>
+                    <a href="javascript:void(0)" class="button border-red" style="padding:5px 8px;"
+                       onclick="DelSelect()"><span class="icon-trash-o"></span>&nbsp;批量发布</a>
+                </td>
+            </volist>
+        </table>
+    </div>
+</form>
+<script type="text/javascript" th:inline="javascript">
+
+    //搜索
+    function changesearch() {
+
+    }
+
+    //单个删除
+    function del(id, mid, iscid) {
+        if (confirm("您确定要删除吗?")) {
+
+        }
+    }
+
+    //全选
+    $("#checkall").click(function () {
+        $("input[name='id[]']").each(function () {
+            if (this.checked) {
+                this.checked = false;
+            }
+            else {
+                this.checked = true;
+            }
+        });
+    })
+
+    //批量删除
+    function DelSelect() {
+        var Checkbox = false;
+        $("input[name='id[]']").each(function () {
+            if (this.checked == true) {
+                Checkbox = true;
+            }
+        });
+        if (Checkbox) {
+            var t = confirm("您确认要删除选中的内容吗？");
+            if (t == false) return false;
+            $("#listform").submit();
+        }
+        else {
+            alert("请选择您要删除的内容!");
+            return false;
+        }
+    }
+
+    (function () {
+        let hint = [[${okHint}]];
+        if (hint != null) {
+            alert(hint);
+        }
+    })();
+</script>
+</body>
+</html>

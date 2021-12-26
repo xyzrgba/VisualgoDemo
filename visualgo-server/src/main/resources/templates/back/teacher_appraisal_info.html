@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title> ADT - 数据结构教辅系统</title>
+    <base th:href="@{/}">
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon"/>
+    <script src="lib/jquery-3.4.1.min.js"></script>
+    <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css"/>
+    <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/question.css"/>
+    <link rel="stylesheet" href="css/appraisal.css"/>
+    <link rel="stylesheet" href="css/pintuer.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <script src="js/jquery.js"></script>
+    <script src="js/pintuer.js"></script>
+    <!--<script src="../../static/lib/jquery-3.4.1.min.js"></script>-->
+    <!--<link rel="stylesheet" href="../../static/lib/bootstrap/css/bootstrap.min.css"/>-->
+    <!--<script src="../../static/lib/bootstrap/js/bootstrap.min.js"></script>-->
+    <!--<link rel="stylesheet" href="../../static/css/question.css"/>-->
+    <!--<link rel="stylesheet" href="../../static/css/appraisal.css"/>-->
+    <!--<link rel="stylesheet" href="../../static/css/pintuer.css">-->
+    <!--<link rel="stylesheet" href="../../static/css/admin.css">-->
+    <!--<script src="../../static/js/jquery.js"></script>-->
+    <!--<script src="../../static/js/pintuer.js"></script>-->
+</head>
+<body>
+<div class="container apprasal-container">
+    <div class="detail-container top">
+        <div class="left">
+            <div class="detail-title">
+                <p>问题描述</p>
+            </div>
+            <div class="detail-body">
+                <div>
+                    <p th:utext="${simpleAppraisal.detailAnswer.questionId} +'.' + ${simpleAppraisal.detailAnswer.questionWithDiff.title}"></p>
+                </div>
+                <hr/>
+                <p class="question-description" th:utext="${simpleAppraisal.detailAnswer.questionWithDiff.content}">
+                </p>
+            </div>
+        </div>
+        <div class="right">
+            <div class="detail-title">
+                <p>学生回答</p>
+            </div>
+            <div class="detail-body">
+                <div>
+                    <p th:utext="${simpleAppraisal.detailAnswer.account.name} + '  ' + ${simpleAppraisal.detailAnswer.account.email}">
+                    </p>
+                </div>
+                <hr/>
+                <p class="question-description" th:utext="${simpleAppraisal.detailAnswer.content}">
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="bottom">
+        <form method="post" class="form-x" role="form">
+            <div class="form-group">
+                <div class="label">
+                    <label>回复语：</label>
+                </div>
+                <div class="field">
+                    <textarea name="content" class="input" readonly="readonly" disabled="disabled"
+                              style="height:100px; border:1px solid #ddd;overflow: auto;resize: none" th:utext="${simpleAppraisal.content}"></textarea>
+                    <div class="tips"></div>
+                </div>
+            </div>
+            <!--<input type="hidden" th:value="${detailAnswer.id}" name="answerId"/>-->
+            <div style="padding-left: 40%;" class="field">
+                <button class="button bg-main icon-check-square-o" type="button" onclick="window.history.back()">返回</button>
+                <!--<button class="button bg-main icon-check-square-o" type="button"> 取消</button>-->
+            </div>
+        </form>
+    </div>
+</div>
+<script th:inline="javascript">
+    // (function () {
+    //     let hint = [[${okHint}]];
+    //     if (hint != null) {
+    //         alert(hint);
+    //     }
+    // })();
+</script>
+</body>
+</html>

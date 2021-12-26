@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="tech.airacoon.visualgo.dao.AccountDao">
+    <resultMap id="account" type="tech.airacoon.visualgo.pojo.Account">
+        <id property="id" column="id"/>
+        <id property="email" column="email"/>
+        <result property="password" column="password"/>
+        <result property="roleId" column="role_id"/>
+        <result property="location" column="location"/>
+        <result property="stateId" column="state_id"/>
+        <result property="avator" column="avator"/>
+        <result property="userNumber" column="user_number"/>
+    </resultMap>
+    <resultMap id="accountView" type="tech.airacoon.visualgo.pojo.AccountView" extends="account">
+        <result property="role.name" column="role_name"/>
+        <result property="accountState.name" column="account_state_name"/>
+    </resultMap>
+    <insert id="regAccount">
+
+        <if test="account.email!=null and account.password!=null">
+            insert into account (name, password, email,user_number) values
+            (#{account.name},#{account.password},#{account.email},#{account.userNumber});
+        </if>
+        <selectKey resultType="java.lang.Integer">
+            select ROW_COUNT();
+        </selectKey>
+    </insert>
+    <update id="updateAccountInfoByEmail">
+        update account
+        set name=#{account.name},location=#{account.location}
+        where email = #{account.email}
+    </update>
+    <update id="updatePassword">
+        <if test="account.email!=null and account.password!=null and account.password!=''">
+            update account
+            set password = #{account.password}
+            where email= #{account.email}
+        </if>
+    </update>
+    <update id="updateAccountInfoById">
+        <if test="account!=null">
+            update account
+            set name=#{account.name}, location=#{account.location}, email=#{account.email}, role_id=#{account.roleId}
+            where id=#{account.id}
+        </if>
+    </update>
+    <select id="getRoles" resultType="tech.airacoon.visualgo.pojo.Role">
+        select * from role
+    </select>
+    <select id="getAccountByEmail" resultMap="accountView" resultType="tech.airacoon.visualgo.pojo.AccountView">
+        <if test="email!=null and email!=''">
+            select *
+            from account_view
+            where email=#{email}
+        </if>
+    </select>
+    <select id="getAccountById" resultMap="accountView" resultType="tech.airacoon.visualgo.pojo.AccountView">
+        <if test="id!=null">
+            select *
+            from account_view
+            where id=#{id}
+        </if>
+    </select>
+    <select id="getAccountByName" resultMap="accountView" resultType="tech.airacoon.visualgo.pojo.AccountView">
+        <if test="name!=null and name!=''">
+            select * from account_view
+            where name = #{name}
+        </if>
+    </select>
+    <select id="getAllAccounts" resultType="tech.airacoon.visualgo.pojo.AccountView" resultMap="accountView">
+        <if test="account.roleId==1">
+            select * from account_view
+            where role_id > #{account.roleId}
+        </if>
+    </select>
+</mapper>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="tech.airacoon.visualgo.dao.AnswerDao">
+    <resultMap id="answer" type="tech.airacoon.visualgo.pojo.Answer">
+        <id property="id" column="id"/>
+        <result property="content" column="content"/>
+        <result property="accountId" column="account_id"/>
+        <result property="questionId" column="question_id"/>
+        <result property="date" column="date"/>
+        <result property="state" column="state"/>
+    </resultMap>
+    <resultMap id="simpleAnswer" extends="answer" type="tech.airacoon.visualgo.pojo.SimpleAnswer">
+        <!--<result property="questionLevel" column="question_level"/>-->
+        <!--<result property="questionTitle" column="question_title"/>-->
+        <result property="questionWithDiff.title" column="question_title"/>
+        <result property="questionWithDiff.content" column="question_content"/>
+        <result property="questionWithDiff.questionDifficulty.name" column="question_level"/>
+        <result property="questionWithDiff.accountId" column="question_account_id"/>
+        <result property="answerState.name" column="answer_state_name"/>
+    </resultMap>
+    <resultMap id="detailAnswer" type="tech.airacoon.visualgo.pojo.DetailAnswer" extends="simpleAnswer">
+        <result property="account.name" column="student_name"/>
+        <result property="account.email" column="student_email"/>
+    </resultMap>
+    <insert id="addAnswer" parameterType="tech.airacoon.visualgo.pojo.Answer">
+        insert into answer (content, question_id, account_id,state) values (#{answer.content},#{answer.questionId},#{answer.accountId},#{answer.state});
+    </insert>
+    <select id="getSimpleAnswers" resultType="tech.airacoon.visualgo.pojo.SimpleAnswer" resultMap="simpleAnswer">
+        <if test="account.id!=null">
+            select *
+            from simple_answer
+            where account_id = #{account.id}
+        </if>
+    </select>
+    <select id="getSimpleAnswerById" resultType="tech.airacoon.visualgo.pojo.SimpleAnswer" resultMap="simpleAnswer">
+        <if test="answerId!=null">
+            select *
+            from simple_answer
+            where simple_answer.id = #{answerId}
+        </if>
+    </select>
+    <select id="getDetailAnswersByTeacherId" resultType="tech.airacoon.visualgo.pojo.DetailAnswer" resultMap="detailAnswer">
+        <if test="teacherId!=null">
+            select * from detail_answer
+            where detail_answer.question_account_id=#{teacherId} and detail_answer.state=1
+        </if>
+    </select>
+    <select id="getDetailAnswerById" resultType="tech.airacoon.visualgo.pojo.DetailAnswer" resultMap="detailAnswer">
+        <if test="answerId!=null">
+            select * from detail_answer
+            where detail_answer.id = #{answerId}
+        </if>
+    </select>
+
+</mapper>

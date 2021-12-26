@@ -1,0 +1,44 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="../../css/layout.css">
+</head>
+<body>
+<div class="stageDiv">
+    <canvas id="canvas"></canvas>
+    <div class="algoBar" id="algoBar">
+        <div class="cellDiv">
+            <div class="left" id="initDiv">
+                <label>数组</label><input type="text" placeholder="输入数字以,分开" name="initArray"/>
+                <button id="confirmInit" class="confirmBtn htmlBtn">创建</button>
+            </div>
+            <button type="button" class="preBtn right htmlBtn" id="preInit">初始化</button>
+        </div>
+        <div class="cellDiv">
+            <div class="left" id="runDiv">
+                <button id="confirmRun" class="confirmBtn htmlBtn">运行</button>
+            </div>
+            <button type="button" class="preBtn right htmlBtn" id="preRun">快速排序</button>
+        </div>
+    </div>
+</div>
+</body>
+<script src="../../lib/layui/layui.js" charset="utf-8"></script>
+<script src="../../lib/jquery/jquery-3.4.1.min.js"></script>
+<script src="../../js/AlgorithmElements.js"></script>
+<script src="../../js/AnimatedObject.js"></script>
+<script src="../../js/NodeObject.js"></script>
+<script src="../../js/AnimatedFillRectangle.js"></script>
+<script src="../../js/SingleAnimation.js"></script>
+<script src="../../js/AlgorithmObject.js"></script>
+<script src="../../js/AnimatedLine.js"></script>
+<script src="../../js/ObjectManager.js"></script>
+<script src="../../js/AnimatedManager.js"></script>
+<script src="../../js/PublicHelper.js"></script>
+<script src="../../js/SortingObject.js"></script>
+<script src="../../js/QuickSortingDemo.js"></script>
+<script src="sortingHelper.js"></script>
+<script>
+    initHtml();
+</script>
+</html>

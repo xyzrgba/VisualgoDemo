@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <title>Visualgo -- 可视化数据结构和算法演示平台</title>
+    <script src="lib/jquery/jquery-3.4.1.min.js"></script>
+</head>
+
+<body>
+<div class="layui-layout layui-layout-admin">
+    <!-- 首部 -->
+    <div class="layui-header header header-top">
+        <div class="layui-main top-row">
+            <a href="#" class="logo">
+                <img src="img/logo.png" alt="Visualgor"/>
+            </a>
+            <ul class="layui-nav top-ul">
+                <li class="layui-nav-item"><a href="">首页</a></li>
+                <li class="layui-nav-item"><a href="">演示</a></li>
+                <li class="layui-nav-item"><a href="">课程</a></li>
+                <li class="layui-nav-item"><a href="">社区</a></li>
+                <li class="layui-nav-item"><a href="">关于</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 左部导航栏 -->
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <ul class="little-nav layui-nav layui-nav-tree layui-inline " lay-filter="demo" style="margin-right: 20px;">
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a href="javascript:;">数据结构</a>
+                    <dl class="layui-nav-child" id="dataStruct">
+                        <dd onclick="initFrame('pages/list/list.html')"><a href="javascript:;">单链表</a></dd>
+                        <dd onclick="initFrame('pages/array/array.html')"><a href="javascript:;">数组</a></dd>
+                        <dd onclick="initFrame('pages/stack/stack.html')"><a href="javascript:;">栈</a></dd>
+                        <dd onclick="initFrame('pages/queue/queue.html')"><a href="javascript:;">队列</a></dd>
+                        <dd onclick="initFrame('pages/tree/binaryTree.html')"><a href="javascript:;">二叉树</a></dd>
+                        <dd onclick="initFrame('pages/heap/heap.html')"><a href="javascript:;">最大堆</a></dd>
+                        <dd onclick="initFrame('pages/map/map.html')"><a href="javascript:;">无向图</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">排序算法</a>
+                    <dl class="layui-nav-child">
+                        <dd onclick="initFrame('pages/sorting/insert.html')"><a href="javascript:;">插入排序</a></dd>
+                        <dd onclick="initFrame('pages/sorting/select.html')"><a href="javascript:;">选择排序</a></dd>
+                        <dd onclick="initFrame('pages/sorting/bubble.html')"><a href="javascript:;">冒泡排序</a></dd>
+                        <dd onclick="initFrame('pages/sorting/quick.html')"><a href="javascript:;">快速排序</a></dd>
+                        <!--<dd><a href="javascript:;">归并排序</a></dd>-->
+                    </dl>
+                </li>
+                <!--<li class="layui-nav-item">-->
+                <!--<a href="javascript:;">列表搜索</a>-->
+                <!--<dl class="layui-nav-child">-->
+                <!--<dd><a href="javascript:;">二分搜索</a></dd>-->
+                <!--<dd><a href="javascript:;">线性搜索</a></dd>-->
+                <!--</dl>-->
+                <!--</li>-->
+                <!--<li class="layui-nav-item">-->
+                <!--<a href="javascript:;">数学</a>-->
+                <!--<dl class="layui-nav-child">-->
+                <!--<dd><a href="javascript:;">辗转相除法</a></dd>-->
+                <!--</dl>-->
+                <!--</li>-->
+            </ul>
+        </div>
+    </div>
+    <!-- 主题部分 -->
+    <div class="layui-body show-demo" style="overflow: hidden;">
+        <iframe class='iframediv' id="stage-body" src="about:black"></iframe>
+    </div>
+</div>
+</body>
+<link rel="stylesheet" href="css/index.css"/>
+<link rel="stylesheet" href="lib/layui/css/layui.css"/>
+<script src="lib/layui/layui.js" charset="utf-8"></script>
+<script src="index.js"></script>
+<script>
+    layui.use('layer', function () {
+        var layer = layui.layer;
+    });
+    layui.use('element', function () {
+        var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
+        //监听导航点击
+        element.on('nav(demo)', function (elem) {
+            //console.log(elem)
+            layer.msg(elem.text());
+        });
+    });
+</script>
+
+</html>

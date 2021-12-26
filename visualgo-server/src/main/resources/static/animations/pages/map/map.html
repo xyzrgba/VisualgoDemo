@@ -1,0 +1,77 @@
+<html>
+
+<head>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="../../css/layout.css">
+</head>
+
+<body>
+<div class="stageDiv">
+    <canvas id="canvas"></canvas>
+    <div class="algoBar" id="algoBar">
+        <div class="cellDiv">
+            <div class="left" id="initDiv">
+                <label>节点数</label><input type="number" placeholder="节点个数" name="initSize"/>
+                <button id="confirmInit" class="confirmBtn htmlBtn">生成</button>
+            </div>
+            <button type="button" class="preBtn right htmlBtn" id="preInit">创建图</button>
+        </div>
+        <div class="cellDiv">
+            <div class="left" id="edgeDiv">
+                <label>开始id</label><input type="number" placeholder="边的开始id" name="startId"/>
+                <label>结束id</label><input type="number" placeholder="边的结束id" name="endId"/>
+                <button id="confirmAdd" class="confirmBtn htmlBtn">添加</button>
+                <button id="confirmSub" class="confirmBtn htmlBtn">删除</button>
+            </div>
+            <button type="button" class="preBtn right htmlBtn" id="preEdge">边</button>
+        </div>
+        <div class="cellDiv">
+            <div class="left" id="traversalDiv">
+                <label>开始ID</label><input type="number" placeholder="开始节点的ID" name="startTraverseID"/>
+                <button id="confirmDFS" class="confirmBtn htmlBtn">DFS遍历</button>
+                <button id="confirmBFS" class="confirmBtn htmlBtn">BFS遍历</button>
+            </div>
+            <button type="button" class="preBtn right htmlBtn" id="preDFS">图的遍历</button>
+        </div>
+        <div class="cellDiv">
+            <div class="left" id="dijkstraDiv">
+                <label>开始ID</label><input type="number" placeholder="开始节点ID" name="startDID"/>
+                <label>结束ID</label><input type="number" placeholder="结束节点ID" name="endDID"/>
+                <button id="confirmDijkstra" class="confirmBtn htmlBtn">运行Dijkstra</button>
+            </div>
+            <button type="button" class="preBtn right htmlBtn" id="preDijkstra">最短路径</button>
+        </div>
+        <div class="cellDiv">
+            <div class="left" id="kruskalDiv">
+                <!--<label>开始ID</label><input type="number" placeholder="开始节点ID" name="startKID"/>-->
+                <button id="confirmPrim" class="confirmBtn htmlBtn">运行Prim</button>
+            </div>
+            <button type="button" class="preBtn right htmlBtn" id="preKruskal">最小生成树</button>
+        </div>
+    </div>
+</div>
+</body>
+<script src="../../lib/layui/layui.js" charset="utf-8"></script>
+<script src="../../lib/layui/layui.js" charset="utf-8"></script>
+<script src="../../lib/jquery/jquery-3.4.1.min.js"></script>
+<script src="../../js/AlgorithmElements.js"></script>
+<script src="../../js/AnimatedObject.js"></script>
+<script src="../../js/NodeObject.js"></script>
+<script src="../../js/AnimatedFillRectangle.js"></script>
+<script src="../../js/AnimatedLabel.js"></script>
+<script src="../../js/SingleAnimation.js"></script>
+<script src="../../js/AlgorithmObject.js"></script>
+<script src="../../js/AnimatedCircle.js"></script>
+<script src="../../js/AnimatedLabel.js"></script>
+<script src="../../js/AnimatedEdge.js"></script>
+<script src="../../js/AnimatedLine.js"></script>
+<script src="../../js/ObjectManager.js"></script>
+<script src="../../js/ArrayPlus.js"></script>
+<script src="../../js/AnimatedManager.js"></script>
+<script src="../../js/PublicHelper.js"></script>
+<script src="./mapHelper.js"></script>
+<script src="../../js/MapDemo.js"></script>
+<script>
+    initHtml();
+</script>
+</html>

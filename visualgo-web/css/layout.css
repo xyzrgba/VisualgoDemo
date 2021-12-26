@@ -1,0 +1,73 @@
+/**
+ * 新的CSS
+ */
+.stageDiv {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.stageDiv .algoBar {
+    position: absolute;
+    right: 1px;
+    bottom: 10%;
+    display: flex;
+    flex-direction: column;
+}
+
+.cellDiv {
+    width: 100%;
+    height: 30px;
+    right: 0;
+    display: flex;;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.htmlBtn {
+    width: 90px;
+    height: 100%;
+    background-color: transparent;
+    margin-left: 8px;
+    border-width: 1px;
+    border-radius: 2px;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.1);
+}
+
+.left, .right {
+    height: 100%;
+}
+
+.left label {
+    font-size: 14px;
+    margin-left: 10px;
+}
+
+.left input {
+    margin-left: 8px;
+    width: 110px;
+    height: 30px;
+    border-width: 1px;
+    margin-left: 10px;
+    border-radius: 2px;
+}
+
+.left {
+    display: none;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="tech.airacoon.visualgo.dao.QuestionDao">
+    <resultMap id="question" type="tech.airacoon.visualgo.pojo.Question">
+        <id column="id" property="id"/>
+        <result property="accountId" column="account_id"/>
+        <result property="content" column="content"/>
+        <result property="difficulty" column="difficulty"/>
+        <result property="title" column="title"/>
+        <result property="enName" column="en_name"/>
+        <result property="date" column="date"/>
+    </resultMap>
+    <resultMap id="questionWithDiff" extends="question" type="tech.airacoon.visualgo.pojo.QuestionWithDiff">
+        <result property="questionDifficulty.name" column="question_level"/>
+    </resultMap>
+    <insert id="addFullQuestion">
+        insert into question(account_id, content, title, difficulty, en_name)
+        values(#{question.accountId},#{question.content},#{question.title},#{question.difficulty},#{question.enName})
+    </insert>
+    <update id="updateQuestionById">
+        <if test="question.id!=null">
+            update question
+            set content=#{question.content}
+            where id = #{question.id}
+        </if>
+    </update>
+    <select id="getAllQuestions" resultMap="questionWithDiff">
+        select * from simple_question
+    </select>
+    <select id="getQuestionByEnName" resultMap="questionWithDiff">
+        <if test="enName!=null and enName!=''">
+            select * from simple_question
+            where simple_question.en_name = #{enName}
+        </if>
+    </select>
+    <select id="getQuestionByAccountId" resultType="tech.airacoon.visualgo.pojo.QuestionWithDiff" resultMap="questionWithDiff">
+        <if test="accountId!=null">
+            select * from simple_question
+            where simple_question.account_id = #{accountId}
+        </if>
+    </select>
+    <select id="getQuestionById" resultType="tech.airacoon.visualgo.pojo.QuestionWithDiff" resultMap="questionWithDiff">
+        <if test="questionId!=null">
+            select * from simple_question
+            where simple_question.id = #{questionId}
+        </if>
+    </select>
+
+</mapper>

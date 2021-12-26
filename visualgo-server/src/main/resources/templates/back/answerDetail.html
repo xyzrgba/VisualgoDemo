@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <base th:href="@{/}">
+    <title></title>
+    <script src="lib/jquery-3.4.1.min.js"></script>
+    <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css"/>
+    <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/question.css"/>
+    <style>
+        . detail-container{
+            min-height: 500px;
+        }
+    </style>
+</head>
+<body>
+<div class="container detail-container">
+    <div class="left">
+        <div class="detail-title">
+            <p>问题描述</p>
+        </div>
+        <div class="detail-body">
+            <div>
+                <p th:utext="${answerDetail.questionId}+ '.' + ${answerDetail.questionWithDiff.title}"></p>
+            </div>
+            <hr/>
+            <p th:utext="${answerDetail.questionWithDiff.content}" class="question-description">
+            </p>
+        </div>
+    </div>
+    <div class="right">
+        <form role="form">
+            <div class="form-group">
+                <div class="form-title">
+                    <p>提交的方案</p>
+                    <button type="button" class="btn btn-default" onclick="window.history.back()">返回</button>
+                </div>
+                <textarea readonly="readonly" disabled="disabled" class="form-control" th:utext="${answerDetail.content}" rows="25" name="answerContent" placeholder="可以写代码，也可以写思路"></textarea>
+                <input type="hidden" th:value="${answerDetail.questionId}" name="questionId"/>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+</body>
+</html>

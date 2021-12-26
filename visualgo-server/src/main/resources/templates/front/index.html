@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorate="layout"
+      layout:fragment="content">
+<head>
+    <meta charset="UTF-8">
+    <title> ADT - 数据结构教辅系统</title>
+</head>
+<body>
+<main class="index-main">
+    <div class="container">
+        <span class="main-lg">D</span>
+        <p class="lead"> ADT Visualgor是数据结构和算法的可视化教辅系统。系统以动画演示为主，多方面辅助和加深学生对课程的理解。</p>
+        <p class="lead"><a th:href="@{/animation}" class="btn btn-lg main-a">开始学习</a></p>
+    </div>
+</main>
+<div class="index-introduce">
+    <div class="container">
+        <h2>为各阶段的学习者提供资料和交流平台</h2>
+        <p class="lead">ADT Visualgor 让学习者更直观、简单的理解数据结构和算法的原理，为后阶段的学习做好铺垫。</p>
+        <hr class="half-rule"/>
+        <div class="row">
+            <div class="col-sm-4">
+                <img src="img/animation.png"/>
+                <h3>动画演示</h3>
+                <p>
+                    不同的数据结构和算法存储的信息和应用场景不同，可是他们的原理是想通的，我们通过动画演示的方式，在视觉上传递给学生更多的信息，以便学生更好的理解相关的知识。
+                </p>
+            </div>
+            <div class="col-sm-4">
+                <img src="img/filedata.png"/>
+                <h3>资料阅读</h3>
+                <p>
+                    对于复杂的数据结构和算法，我们通过其他的学习资料进行扩充，学生也可以自己动手完成算法的实现，计算机是门实践性的学科，我们鼓励大家自己实现相关的算法，这样更好的理解它。
+                </p>
+            </div>
+            <div class="col-sm-4">
+                <img src="img/exchange.png"/>
+                <h3>交流互动</h3>
+                <p>
+                    对于在学习中遇到的难点，我们通过交流以便更好地指导同学们学习。分享自己的学习方案，帮助大家更好的学好这门课程。
+                </p>
+            </div>
+        </div>
+        <!--<hr class="half-rule"/>-->
+    </div>
+</div>
+</body>
+<!--<script src="lib/jquery-3.4.1.min.js"></script>-->
+<!--<link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css"/>-->
+<!--<script src="lib/bootstrap/js/bootstrap.min.js"></script>-->
+<link rel="stylesheet" href="css/index.css"/>
+</html>

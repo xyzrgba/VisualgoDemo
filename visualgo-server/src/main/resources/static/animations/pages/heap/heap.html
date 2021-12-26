@@ -1,0 +1,55 @@
+<html>
+
+<head>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="../../css/layout.css"/>
+</head>
+
+<body>
+<div class="stageDiv">
+    <!-- 创建链表头指针 -->
+    <canvas id="canvas"></canvas>
+    <div class="algoBar" id="algoBar">
+        <div class="cellDiv">
+            <div class="left" id="insertDiv">
+                <label>值</label><input type="number" min="0" placeholder="请输入数值" name="insertValue"/>
+                <button id="confirmInsert" class="confirmBtn htmlBtn">确认</button>
+            </div>
+            <button type="button" class="preBtn right htmlBtn" id="preInsert">添加</button>
+        </div>
+        <div class="cellDiv">
+            <div class="left" id="deleteDiv">
+                <label>值</label><input type="number" min="0" placeholder="请输入数值" name="deleteValue"/>
+                <button id="confirmDelete" class="confirmBtn htmlBtn">确认</button>
+            </div>
+            <button type="button" class="preBtn right htmlBtn" id="preDelete">删除</button>
+        </div>
+        <div class="cellDiv">
+            <div class="left" id="clearDiv">
+                <button id="confirmClear" class="confirmBtn htmlBtn">确认</button>
+            </div>
+            <button type="button" class="preBtn right htmlBtn" id="preClear">清空</button>
+        </div>
+    </div>
+</div>
+</body>
+<script src="../../lib/layui/layui.js" charset="utf-8"></script>
+<script src="../../lib/jquery/jquery-3.4.1.min.js"></script>
+<script src="../../js/AlgorithmElements.js"></script>
+<script src="../../js/AnimatedObject.js"></script>
+<script src="../../js/NodeObject.js"></script>
+<script src="../../js/SingleAnimation.js"></script>
+<script src="../../js/AlgorithmObject.js"></script>
+<script src="../../js/AnimatedLabel.js"></script>
+<script src="../../js/AnimatedCircle.js"></script>
+<script src="../../js/AnimatedEdge.js"></script>
+<script src="../../js/ObjectManager.js"></script>
+<script src="../../js/AnimatedManager.js"></script>
+<script src="../../js/PublicHelper.js"></script>
+<script src="../../js/MathPlus.js"></script>
+<script src="../../js/HeapDemo.js"></script>
+<script src="./heapHelper.js"></script>
+<script>
+    initHtml();
+</script>
+</html>

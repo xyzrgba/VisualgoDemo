@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="tech.airacoon.visualgo.dao.FileDao">
+    <resultMap id="file" type="tech.airacoon.visualgo.pojo.File">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="type" column="type"/>
+        <result property="path" column="path"/>
+        <result property="authorId" column="author_id"/>
+        <result property="state" column="state"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+    <resultMap id="fileWithType" type="tech.airacoon.visualgo.pojo.FileWithType" extends="file">
+        <result property="fileType.basePath" column="base_path"/>
+    </resultMap>
+    <resultMap id="bookFile" type="tech.airacoon.visualgo.pojo.BookFile" extends="file">
+        <result property="literatureType.name" column="literature_type_name"/>
+        <result property="literature.name" column="literature_name"/>
+        <result property="fileType.basePath" column="base_path"/>
+        <result property="fileType.name" column="file_type_name"/>
+        <result property="literature.type" column="literature_type"/>
+    </resultMap>
+    <select id="queryFilesByType" resultType="tech.airacoon.visualgo.pojo.File">
+        <if test="typeName!=null and typeName!='' and authorId != null">
+            SELECT file.* FROM file
+            WHERE file.`author_id` = #{authorId}
+            AND file.`type` IN (
+            SELECT file_type.type FROM file_type
+            WHERE file_type.`name` = #{typeName})
+        </if>
+    </select>
+    <select id="getBasePathByTypeName" resultType="java.lang.String">
+        <if test="typeName!=null and typeName!=''">
+            select file_type.base_path from file_type
+            where file_type.name = #{typeName}
+        </if>
+    </select>
+    <select id="queryFileById" resultMap="fileWithType">
+        <if test="fileId!=null">
+            SELECT file.* ,file_type.base_path
+            FROM FILE
+            LEFT JOIN file_type ON file.type = file_type.type
+            WHERE file.id =#{fileId}
+        </if>
+    </select>
+    <select id="getFristFile" resultMap="fileWithType">
+        SELECT file.* ,file_type.base_path
+        FROM file
+        LEFT JOIN file_type on file.type = file_type.type
+        limit 1
+    </select>
+    <select id="getDefaultBookFile" resultType="tech.airacoon.visualgo.pojo.BookFile">
+        <if test="literatureType!=null and literatureType!='' and authorId != null">
+            SELECT bookfile.*
+            FROM bookfile
+            WHERE bookfile.`author_id` = #{authorId}
+            AND bookfile.literature_type=#{literatureType}
+        </if>
+    </select>
+
+</mapper>
