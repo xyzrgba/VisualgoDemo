@@ -1,7 +1,7 @@
 ##  Visualgo-web
 
 #### 1、介绍
-数据结构和算法的动画演示
+数据结构和算法的动画演示,类图见design文件夹的main_design.mdj文件，使用StarUML打开
 
 #### 2、工具
 
